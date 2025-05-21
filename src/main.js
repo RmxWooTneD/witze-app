@@ -2,7 +2,7 @@
 import { fetchJoke } from "./fatch";
 import { saveJokesLocalstorage, getSavedJokes } from "./local";
 
-console.log(await fetchJoke());
+//console.log(await fetchJoke());
 
 const saveJokeButton = document.querySelector(".current-joke_save");
 const loadNewJokeButton = document.querySelector(".current-joke_generate");
