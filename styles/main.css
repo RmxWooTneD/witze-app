@@ -25,6 +25,7 @@ body {
 }
 
 .heading {
+  text-align: center;
   color: #04da4b;
   font-family: "Rubik Scribble", cursive;
   font-size: 60px;
@@ -65,8 +66,8 @@ body {
   cursor: pointer;
 }
 .current-joke_generate:hover, .current-joke_save:hover {
-  background-color: #04c142;
-  border-color: #04c142;
+  background-color: #04da4b;
+  border-color: #04da4b;
 }
 .current-joke_generate, .current-joke_save:hover {
   background-color: #04da4b;
@@ -79,6 +80,9 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
+.current-joke_save--disabled {
+  display: none;
 }
 .current-joke_save-icon {
   width: 1.5rem;
@@ -129,7 +133,7 @@ body {
   transition: all 0.2s ease-in-out;
 }
 .saved-joke_remove:hover {
-  background-color: #ea1111;
+  background-color: #f02f2f;
 }
 .saved-joke_remove-icon {
   width: 1.5rem;
