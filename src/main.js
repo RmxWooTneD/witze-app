@@ -1,18 +1,26 @@
 import "./../styles/main.scss";
 import { fetchJoke } from "./fatch";
-import { saveJokesLocalstorage, getSavedJokes } from "./local";
+import {
+  saveJokesLocalstorage,
+  getSavedJokes,
+  removeJokeFromLocalstorage,
+} from "./local";
 
+const removeJokeButton = document.querySelector(".saved-joke_remove-icon");
 const saveJokeButton = document.querySelector(".current-joke_save");
 const loadNewJokeButton = document.querySelector(".current-joke_generate");
 const currentJokeElement = document.querySelector(".current-joke_text");
-const savedJokeElement = document.querySelector(".saved-joke_text");
 const savedJokeListElement = document.querySelector(".saved-jokes_list");
 
 let currentJoke = "";
-let html = "";
 
 loadNewJokeButton.addEventListener("click", loadNewJoke);
 saveJokeButton.addEventListener("click", saveNewJoke);
+
+if (currentJoke) {
+  saveJokesLocalstorage(currentJoke);
+  renderSaveJokes();
+}
 
 async function loadNewJoke() {
   const joke = await fetchJoke();
@@ -32,15 +40,24 @@ function saveNewJoke() {
   }
 }
 
+function removeSavedJoke(index) {
+  removeJokeFromLocalstorage(index);
+  renderSaveJokes();
+}
+
+window.removeSavedJoke = removeSavedJoke; // Expose the function to the global scope
+
 function renderSaveJokes() {
   const savedJokes = getSavedJokes();
 
-  savedJokes.forEach((joke) => {
+  let html = "";
+
+  savedJokes.forEach((joke, index) => {
     html += `<div class="saved-joke">
                 <div class="saved-joke_text">
                 ${joke}
                 </div>
-                <button class="saved-joke_remove">
+                <button class="saved-joke_remove" onclick="removeSavedJoke(${index})">
                 <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -59,8 +76,9 @@ function renderSaveJokes() {
               </div>`;
   });
 
-  if (!html) html = "<em>noch keine Witze gespeichert</em>";
-
   savedJokeListElement.innerHTML = html;
 }
+
+// removeJokeFromLocalstorage(joke);
+
 renderSaveJokes();

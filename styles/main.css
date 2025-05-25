@@ -20,7 +20,7 @@ body {
 }
 @media only screen and (min-width: 600px) {
   #app {
-    margin-top: 4rem;
+    margin-top: 3.9rem;
   }
 }
 
@@ -66,8 +66,8 @@ body {
   cursor: pointer;
 }
 .current-joke_generate:hover, .current-joke_save:hover {
-  background-color: #04da4b;
-  border-color: #04da4b;
+  background-color: #04c142;
+  border-color: #04c142;
 }
 .current-joke_generate, .current-joke_save:hover {
   background-color: #04da4b;
